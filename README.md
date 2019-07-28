@@ -1,10 +1,11 @@
 ExHentai gallery metadata  
 Before you clone,Make sure you have git lfs installed, This repo is about 2GB large  
-**If you having trouble getting those files, you can find a solution at [#1](https://github.com/Tlaster/ehdb/issues/1#issuecomment-515762388)**
+**You can also download json data file from [Mega](https://mega.nz/#F!oh1U0SIA!WBUcf3PaOvrfIF238fnbTg)**
 
 # Usage
 ## Website
-Run `docker-compose up` and you can visit `http://localhost:8080`
+Run `docker-compose up` and you can visit `http://localhost:8080`  
+If you're willing to dev the website, you can switch to `website` branch
 ![website](website.png)
 
 ## Thumb images
