@@ -4,7 +4,7 @@ import Gallery, { DisplayMode } from '../Gallery';
 import Search, { SearchParameter } from '../Search';
 import axios from 'axios';
 import serverConfig from '../../config/server.json'
-import { ProgressIndicator, DefaultButton, SpinButton, TextField } from 'office-ui-fabric-react';
+import { ProgressIndicator, DefaultButton, SpinButton, TextField, Icon } from 'office-ui-fabric-react';
 import queryString from 'query-string';
 
 
@@ -15,7 +15,9 @@ export default function Home(props: any) {
     const [enabledCat, setEnabledCat] = useState([])
     const [hasPrev, setHasPrev] = useState(false);
     const [currentPage, setCurrentPage] = useState(0);
+    const [isError, setIsError] = useState(false);
     const fetchData = async (query?: any) => {
+        setIsError(false);
         setIsLoading(true);
         let params: any = {};
         if (query) {
@@ -27,12 +29,16 @@ export default function Home(props: any) {
             setQuery(params.search as string)
         }
         setEnabledCat(params.cat)
-        const response = await axios.get(serverConfig.baseurl, {
-            params: params
-        });
-        setCurrentPage(parseInt(response.data.currentPage))
-        setHasPrev(response.data.currentPage > 0);
-        setGalleryList(response.data.items);
+        try {
+            const response = await axios.get(serverConfig.baseurl, {
+                params: params
+            });
+            setCurrentPage(parseInt(response.data.currentPage))
+            setHasPrev(response.data.currentPage > 0);
+            setGalleryList(response.data.items);
+        } catch (error) {
+            setIsError(true);
+        }
         setIsLoading(false);
     };
 
@@ -72,7 +78,7 @@ export default function Home(props: any) {
             <div className="search-content">
                 <Search cats={enabledCat} onChange={(it: any) => setQuery(it.target.value)} query={query} onSearch={(search) => doSearch(search)} />
             </div>
-            {!isLoading &&
+            {!isLoading && !isError &&
                 <div className="paging-container">
                     {hasPrev && <DefaultButton text="<" onClick={toPrev} />}
                     <TextField type="number" value={currentPage.toString()} onChange={(it: any) => setCurrentPage(parseInt(it.target.value))} className="paging-input" />
@@ -80,11 +86,22 @@ export default function Home(props: any) {
                     <DefaultButton text=">" onClick={toNext} />
                 </div>
             }
+            {isError &&
+                <div style={{
+                    margin: '2em',
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center'
+                }}>
+                    <Icon style={{fontSize: '6em'}} iconName="Sad" />
+                    <div style={{fontSize: '2em'}}>Loading error</div>
+                </div>
+            }
             <div className="gallery-content">
                 {isLoading && <ProgressIndicator />}
                 {!isLoading && <Gallery displayMode={DisplayMode.ExtendedList} items={galleryList} />}
             </div>
-            {!isLoading &&
+            {!isLoading && !isError &&
                 <div className="paging-container">
                     {hasPrev && <DefaultButton text="<" onClick={toPrev} />}
                     <TextField type="number" value={currentPage.toString()} onChange={(it: any) => setCurrentPage(parseInt(it.target.value))} className="paging-input" />
