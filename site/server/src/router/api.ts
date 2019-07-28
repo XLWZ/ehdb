@@ -24,16 +24,17 @@ ApiRouter.get('/', async (req, res, next) => {
             });
         }
     }
+    const actualPage = parseInt(page) || 0;
     const items = await query
         .orderBy('g.gid', 'DESC')
-        .skip((parseInt(page) || 0) * 20)
+        .skip((actualPage) * 20)
         .take(20)
         .getMany();
     items.forEach(it => (it.tags as any) = it.tags.map(tag => tag.name))
     res.send({
         // totalPage: Math.ceil(total / 20),
         // totalCount: total,
-        currentPage: parseInt(page) || 0,
+        currentPage: actualPage,
         items,
     })
 });

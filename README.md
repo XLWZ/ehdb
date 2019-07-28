@@ -3,9 +3,7 @@ ExHentai gallery metadata
 
 # Usage
 ## Website
-Requirement: `NodeJS`  
-Run `npm install && npm start` under `./site/server` folder, you'll get a running api server  
-Run `npm install && npm start` under `./site/web` folder, you'll get the website page like this:
+Run `docker-compose up` and you can visit `http://localhost:8080`
 ![website](website.png)
 
 ## Thumb images
