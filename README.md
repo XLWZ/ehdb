@@ -1,5 +1,6 @@
 ExHentai gallery metadata  
-**Before you clone,Make sure you have git lfs installed**, This repo is about 2GB large
+Before you clone,Make sure you have git lfs installed, This repo is about 2GB large  
+**If you having trouble getting those files, you can find a solution at [#1](https://github.com/Tlaster/ehdb/issues/1#issuecomment-515762388)**
 
 # Usage
 ## Website
@@ -12,8 +13,6 @@ You might want to download all the thumb images just in case `ehgt.org` will not
 ## Raw data
 Get `gdata.json` or `gdata.pickle` for raw data  
 `./site/server/database.sqlite` for a sqlite db file, this file was generated from `gdata.json`, if you're worried about the security issue, you can go with `gdata.json`
-
-If you having trouble getting those files, you can find a solution at [#1](https://github.com/Tlaster/ehdb/issues/1#issuecomment-515762388)
 
 ### Data structure example
 ```JSON
