@@ -5,3 +5,10 @@
     width: 39em;
     margin: auto;
 }
+
+@media screen and (max-width: 480px){
+    .search-category-list {
+        width: auto;
+        margin: auto;
+    }
+  }

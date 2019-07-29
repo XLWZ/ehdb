@@ -1,5 +1,6 @@
 import React from 'react';
 import "./index.css"
+import { Link } from 'react-router-dom';
 
 export default function Tag(props: { tags: string[] }) {
     const tags = props.tags;
@@ -19,10 +20,12 @@ export default function Tag(props: { tags: string[] }) {
                         <td className="tc">
                             {it}:
                     </td>
-                    <td>
+                        <td>
                             {tobj[it].map((value: string) => (
                                 <div className="gt">
-                                    {value}
+                                    <Link to={`/tags?search=${it}:${value}`}>
+                                        {value}
+                                    </Link>
                                 </div>
                             ))}
                         </td>

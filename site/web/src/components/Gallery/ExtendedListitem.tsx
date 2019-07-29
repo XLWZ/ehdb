@@ -7,6 +7,8 @@ import Timestamp from '../Timestamp';
 import Space from '../Space';
 import { Rating } from 'office-ui-fabric-react/lib/Rating';
 import { ActionButton, Dialog, DialogFooter, PrimaryButton, DialogType } from 'office-ui-fabric-react';
+import './ExtendedListitem.css'
+import { Link } from 'react-router-dom';
 
 export default function ExtendedListitem(prop: IItemProp) {
     const [hideDialog, setHideDialog] = useState(true);
@@ -48,7 +50,7 @@ export default function ExtendedListitem(prop: IItemProp) {
                     <div className="ms-Grid-col ms-sm12 ms-md6 ms-lg4 ms-xl3 ms-xxl2 ms-xxxl2">
                         <img src={gallery.thumb} />
                     </div>
-                    <div className="ms-Grid-col ms-hiddenLgDown ms-sm12 ms-md12 ms-lg3 ms-xl2 ms-xxl2 ms-xxxl1" style={{textAlign: 'center'}}>
+                    <div className="ms-Grid-col ms-hiddenLgDown ms-sm12 ms-md12 ms-lg3 ms-xl2 ms-xxl2 ms-xxxl1" style={{ textAlign: 'center' }}>
                         <div>
                             <Category mode={CategoryMode.Normal} type={gallery.category} />
                         </div>
@@ -64,14 +66,16 @@ export default function ExtendedListitem(prop: IItemProp) {
                             rating={parseInt(gallery.rating)} />
                         <Space />
                         <div>
-                            {gallery.uploader}
+                            <Link to={`/uploader?search=${gallery.uploader}`}>
+                                {gallery.uploader}
+                            </Link>
                         </div>
                         <Space />
                         <div>
                             {gallery.filecount} pages
                     </div>
                     </div>
-                    <div className="ms-Grid-col ms-sm12 ms-md6 ms-lg8 ms-xl7 ms-xxl8 ms-xxxl9" style={{ textAlign: 'left', display: 'contents' }}>
+                    <div className="ms-Grid-col ms-sm12 ms-md6 ms-lg8 ms-xl7 ms-xxl8 ms-xxxl9 extended-list-item-info">
                         <div>
                             <div>
                                 <Text variant="large">
@@ -102,7 +106,9 @@ export default function ExtendedListitem(prop: IItemProp) {
                                 rating={parseInt(gallery.rating)} />
                             <Space />
                             <div>
-                                {gallery.uploader}
+                                <Link to={`/uploader?search=${gallery.uploader}`}>
+                                    {gallery.uploader}
+                                </Link>
                             </div>
                             <Space />
                             <div>

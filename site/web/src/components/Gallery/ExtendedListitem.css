@@ -1,0 +1,13 @@
+
+
+.extended-list-item-info {
+    display: contents;
+    text-align: left;
+}
+@media screen and (max-width: 480px){
+    .extended-list-item-info {
+        display: block;
+        text-align: left;
+    }
+  }
+  
