@@ -1,6 +1,10 @@
 {
-    "type": "sqlite",
-    "database": "database.sqlite",
+    "type": "mssql",
+    "host": "localhost",
+    "port": 1433,
+    "username": "sa",
+    "password": "ehdb",
+    "database": "master",
     "synchronize": false,
     "logging": false,
     "entities": [
