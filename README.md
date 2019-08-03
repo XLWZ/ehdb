@@ -4,7 +4,6 @@ Before you clone,Make sure you have git lfs installed, This repo is about 2GB la
 
 # Usage
 ## Website
-[Example website](https://ihentai.moe)  
 Make sure you have `gdata.json` file and place it under `/site/server`  
 Run `docker-compose up` and you can visit `http://localhost:8080`  
 If you're willing to dev the website, you can switch to `website` branch
